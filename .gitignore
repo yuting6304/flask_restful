@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# image
+3.jpg
+4.jpg
+L.jpg
+LR.jpeg
+LR.jpg
+R.jpg

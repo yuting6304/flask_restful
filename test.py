@@ -46,9 +46,8 @@ def GetDetail(CodeData):
 
 def decode_qrcode(img):
 	result = decode(Image.open(img))
-	print(result[1].data)
-	for text in result:
-		tt = text.data.decode("utf-8")
-
-	return GetDetail(result[1].data)
+	# print(result)
+	# for text in result:
+	# 	tt = text.data.decode("utf-8")
+	return GetDetail(result[0].data)
 

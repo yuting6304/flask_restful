@@ -11,11 +11,13 @@ def dbInit():
     db = dbConnection()
     cursor = db.cursor()
     
-    cursor.execute("CREATE TABLE IF NOT EXISTS bar_code(id INT NOT NULL AUTO_INCREMENT, period CHAR(10) NOT NULL , bar_code CHAR(10) NOT NULL, win CHAR(10) NOT NULL, money char(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARSET=utf8")
+    cursor.execute("CREATE TABLE IF NOT EXISTS bar_code(id INT NOT NULL AUTO_INCREMENT, date CHAR(10) NOT NULL , period CHAR(10) NOT NULL ,prefix_barcode CHAR(2) NOT NULL, bar_code CHAR(20) NOT NULL, win CHAR(10) NOT NULL, money char(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARSET=utf8")
+    cursor.execute("CREATE TABLE IF NOT EXISTS tranditional_code(id INT NOT NULL AUTO_INCREMENT, period CHAR(10) NOT NULL , bar_code CHAR(20) NOT NULL, win CHAR(10) NOT NULL, money char(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARSET=utf8")
     cursor.execute("CREATE TABLE IF NOT EXISTS receipt_group(id INT NOT NULL AUTO_INCREMENT, group_name CHAR(30) NOT NULL, item CHAR(30) NOT NULL, price CHAR(30) NOT NULL, number CHAR(30) NOT NULL, PRIMARY KEY(id), barID CHAR(30) NOT NULL) DEFAULT CHARSET=utf8")
-    
+
     db.close()
     print('[MySQL]: Table had been created')
+
 
 def checkData(table_name, target):
     find_target = 0
@@ -72,11 +74,12 @@ def updateData(table_name, addsqlparams):
     db.commit()
     db.close()
 
-def getData (date) :
+
+def getData (table_name, date) :
     db = dbConnection ()
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM bar_code WHERE period=" + date)
+    cursor.execute("SELECT * FROM " + table_name + " WHERE period = " + date)
     result = cursor.fetchall()
     db.close()
     return result
@@ -85,9 +88,10 @@ def getDataBar (bar_code) :
     db = dbConnection ()
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM bar_code WHERE bar_code=" + bar_code)
+    cursor.execute("SELECT * FROM bar_code WHERE bar_code = " + bar_code)
     result = cursor.fetchall()
     db.close()
+    print(result)
     return result
 
 def getDatabarID (id) :
