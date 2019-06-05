@@ -138,7 +138,7 @@ class QRcode (Resource):
                 os.remove(filename)
                 print('remove img already')
                 # insert into database
-            print(data['invDate'])
+            # print(data['invDate'])
             # print(data['invPeriod'])
             year = int(data['invPeriod'][0:3])
             month = int(data['invPeriod'][3:])
@@ -154,7 +154,7 @@ class QRcode (Resource):
 
             # if it is already in database
             # print(data['invNum'][2:])
-            print(len(data['details']))
+            # print(len(data['details']))
             if(checkData('bar_code', data['invNum'][2:]) == -1):
             
                 addsql = 'bar_code(date, period, prefix_barcode, bar_code, win, money)'
