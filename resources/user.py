@@ -198,7 +198,7 @@ class Prize (Resource):
         month = request.args.get('month')
         data = getPrizeNum(int(year), int(month))
         data_json = json.loads(data)
-        print(data_json)
+        # print(data_json)
         return data_json
 
     def put(self):
