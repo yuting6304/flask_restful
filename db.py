@@ -101,4 +101,5 @@ def getDatabarID (id) :
     cursor.execute("SELECT * FROM receipt_group WHERE barID=" + id)
     result = cursor.fetchall()
     db.close()
+    # print(result)
     return result

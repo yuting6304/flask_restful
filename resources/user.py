@@ -48,10 +48,7 @@ class Tranditionalcode (Resource):
         else:
             print('bar_code exist!')
 
-        return {
-            'msg' : code
-        }, 200
-
+        return code
 
     def put(self):
         pass
@@ -63,7 +60,9 @@ class codeDetail (Resource):
     def get(self):
         id = str(request.args.get('id'))
         detail = getDatabarID(id)
-        return detail
+        detail_json = json.dumps(detail)
+        detail_json = json.loads(detail_json)
+        return detail_json
 
     def post(self):
         pass
@@ -103,9 +102,8 @@ class Detail (Resource):
         receipt_prizenum_json = json.loads(receipt_prizenum)
         # print(receipt_prizenum_json['msg'])
 
-        return {
-            'msg' : receipt_prizenum_json
-        }
+        return receipt_prizenum_json
+
     def post(self):
         pass
 
@@ -134,9 +132,14 @@ class QRcode (Resource):
             file.save(filename)
             data = decode_qrcode(filename)
             
-            if os.path.exists(filename):
-                os.remove(filename)
-                print('remove img already')
+            if(data == -1):
+                return {
+                    'msg' : 'no data'
+                }, 200
+            
+            # if os.path.exists(filename):
+            #     os.remove(filename)
+                # print('remove img already')
                 # insert into database
             # print(data['invDate'])
             # print(data['invPeriod'])
@@ -175,9 +178,7 @@ class QRcode (Resource):
             else:
                 print('bar_code exist!')
 
-            return {
-                'msg' : data
-            }, 200
+            return data
 
     def put(self):
         pass
@@ -194,10 +195,9 @@ class Prize (Resource):
         year = request.args.get('year')
         month = request.args.get('month')
         data = getPrizeNum(int(year), int(month))
-        print(data)
-        return {
-            'msg' : data
-        }, 200
+        data_json = json.loads(data)
+        print(data_json)
+        return data_json
 
     def put(self):
         pass
@@ -257,9 +257,7 @@ class ItemDetail (Resource):
             # print(detail_json)
             result = json.loads(detail_json)
             # print(result)
-            return {
-                'msg' : result
-            }
+            return result
 
             # print(result[0][0][2])
             # print(result[0][0][3])
