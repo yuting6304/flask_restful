@@ -110,3 +110,8 @@ L.jpg
 LR.jpeg
 LR.jpg
 R.jpg
+
+
+# model
+model.json
+model.weights.bin
