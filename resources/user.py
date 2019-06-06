@@ -1,25 +1,24 @@
 import os
 import json
-from flask import Flask, request, render_template
+from flask import Flask, request, send_file
 from flask_restful import Resource
 from test import decode_qrcode
 from posttest import getPrizeNum
 from db import setData, checkData, getData, getDataBar, getDatabarID
 from prize import show_prize
-import time
 
 class Index (Resource):
     def get(self):
         pass
 
     def post(self):
-        # print(request.files)
-        # file = request.files['model.json']
-        # file.save("model.json")
+        print(request.files)
+        file = request.files['model.json']
+        file.save("model.json")
 
-        # file = request.files['model.weights.bin']
-        # file.save("model.weights.bin")
-        pass
+        file = request.files['model.weights.bin']
+        file.save("model.weights.bin")
+        # pass
 
 
     def put(self):
@@ -31,8 +30,9 @@ class Index (Resource):
 
 class Download (Resource):
     def get(self):
-        # return model.json
-        pass
+        path = "./upload/model.json"
+        return send_file(path, as_attachment=True)
+
 
     def post(self):
         pass
@@ -43,6 +43,20 @@ class Download (Resource):
     def delete(self):
         pass
 
+class Modelbin (Resource):
+    def get(self):
+        path = "./upload/model.weights.bin"
+        return send_file(path, as_attachment=True)
+
+
+    def post(self):
+        pass
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
 
 class Tranditionalcode (Resource):
     def get(self):
