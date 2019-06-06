@@ -13,6 +13,27 @@ class Index (Resource):
         pass
 
     def post(self):
+        # print(request.files)
+        # file = request.files['model.json']
+        # file.save("model.json")
+
+        # file = request.files['model.weights.bin']
+        # file.save("model.weights.bin")
+        pass
+
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
+
+
+class Download (Resource):
+    def get(self):
+        # return model.json
+
+    def post(self):
         pass
 
     def put(self):
@@ -20,6 +41,7 @@ class Index (Resource):
 
     def delete(self):
         pass
+
 
 class Tranditionalcode (Resource):
     def get(self):
@@ -138,10 +160,11 @@ class QRcode (Resource):
                     'msg' : 'no data'
                 }, 200
             
-            # if os.path.exists(filename):
-            #     os.remove(filename)
-                # print('remove img already')
-                # insert into database
+            if os.path.exists(filename):
+                os.remove(filename)
+                print('remove img already')
+            
+            # insert into database
             # print(data['invDate'])
             # print(data['invPeriod'])
             year = int(data['invPeriod'][0:3])
