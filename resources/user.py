@@ -133,6 +133,7 @@ class QRcode (Resource):
             data = decode_qrcode(filename)
             
             if(data == -1):
+                print('decode fail')
                 return {
                     'msg' : 'no data'
                 }, 200
@@ -178,6 +179,7 @@ class QRcode (Resource):
             else:
                 print('bar_code exist!')
 
+            # print(data)
             return data
 
     def put(self):
