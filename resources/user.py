@@ -32,6 +32,7 @@ class Index (Resource):
 class Download (Resource):
     def get(self):
         # return model.json
+        pass
 
     def post(self):
         pass
