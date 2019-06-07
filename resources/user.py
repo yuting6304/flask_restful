@@ -14,10 +14,10 @@ class Index (Resource):
     def post(self):
         print(request.files)
         file = request.files['model.json']
-        file.save("model.json")
+        file.save("./upload/model.json")
 
         file = request.files['model.weights.bin']
-        file.save("model.weights.bin")
+        file.save("./upload/model.weights.bin")
         # pass
 
 
