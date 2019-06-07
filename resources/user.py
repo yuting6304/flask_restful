@@ -203,16 +203,16 @@ class QRcode (Resource):
             filename = 'image.jpg'
             file.save(filename)
             data = decode_qrcode(filename)
+
+            if os.path.exists(filename):
+                os.remove(filename)
+                print('remove img already')
             
             if(data == -1):
                 print('decode fail')
                 return {
                     'msg' : 'no data'
                 }, 200
-            
-            if os.path.exists(filename):
-                os.remove(filename)
-                print('remove img already')
             
             # insert into database
             # print(data['invDate'])
