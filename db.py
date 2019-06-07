@@ -91,7 +91,7 @@ def getDataBar (bar_code) :
     cursor.execute("SELECT * FROM bar_code WHERE bar_code = " + bar_code)
     result = cursor.fetchall()
     db.close()
-    print(result)
+    # print(result)
     return result
 
 def getDatabarID (id) :
