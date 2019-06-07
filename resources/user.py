@@ -290,14 +290,14 @@ class ItemDetail (Resource):
 
                 result_tr.append(T)
 
-            result.append(result_qr)
-            result.append(result_tr)
-            # print(result)
-            detail_json = json.dumps(result)
-            # print(detail_json)
-            result = json.loads(detail_json)
-            # print(result)
-            return result
+        result.append(result_qr)
+        result.append(result_tr)
+        # print(result)
+        detail_json = json.dumps(result)
+        # print(detail_json)
+        result = json.loads(detail_json)
+        # print(result)
+        return result
 
             # print(result[0][0][2])
             # print(result[0][0][3])
