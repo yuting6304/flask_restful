@@ -93,6 +93,41 @@ class Tranditionalcode (Resource):
     def delete(self):
         pass
 
+class Manual (Resource):
+    def get(self):
+        pass
+
+    def post(self):
+        year = request.args.get('year')
+        month = request.args.get('month')
+        code = request.args.get('code')
+
+        YM = str(year) + str(month)
+
+        receipt_prizenum = getPrizeNum(int(year), int(month))
+        receipt_prizenum_json = json.loads(receipt_prizenum)
+        if(receipt_prizenum_json['msg'] != '無此期別資料'):
+            win, money = show_prize(str(code), receipt_prizenum_json)
+        else:
+            win = -1
+            money = 0
+
+        if(checkData('Mtranditional_code', code) == -1):
+            addsql = 'Mtranditional_code(period, bar_code, win, money)'
+            addsqlparams = "VALUES ('%s', '%s', '%s', '%s');" % (YM, code, win, money)
+            setData(addsql, addsqlparams)
+            print('insert data into database')
+        else:
+            print('bar_code exist!')
+
+        return code
+
+    def put(self):
+        pass
+
+    def delete(self):
+        pass
+
 class codeDetail (Resource):
     def get(self):
         id = str(request.args.get('id'))
@@ -253,9 +288,11 @@ class ItemDetail (Resource):
         YM = year+month
         item = getData("bar_code", YM)
         tranditional_item = getData("tranditional_code", YM)
+        Mtranditional_item = getData("Mtranditional_code", YM)
         result = []
         result_qr = []
         result_tr = []
+        result_Mtr = []
         # print(item)
         if(len(item) > 0):
             for it in item:
@@ -290,8 +327,18 @@ class ItemDetail (Resource):
 
                 result_tr.append(T)
 
+        if(len(Mtranditional_item) > 0):
+            for Mtran in Mtranditional_item:
+                MT = {}
+                MT['Number'] = Mtran[2]
+                MT['Win'] = Mtran[3]
+
+                result_Mtr.append(MT)
+
         result.append(result_qr)
         result.append(result_tr)
+        result.append(result_Mtr)
+
         # print(result)
         detail_json = json.dumps(result)
         # print(detail_json)

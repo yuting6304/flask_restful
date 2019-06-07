@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_restful import Api, Resource, reqparse, abort
-from resources.user import Index, Download, Modelbin, Detail, QRcode, Prize, codeDetail, monthCode, ItemDetail, Tranditionalcode
+from resources.user import Index, Download, Modelbin, Detail, QRcode, Prize, codeDetail, monthCode, ItemDetail, Tranditionalcode, Manual
 from db import dbInit
 from flask_cors import CORS
 
@@ -13,6 +13,7 @@ api.add_resource(Index, "/")
 api.add_resource(Download, "/Download")
 api.add_resource(Modelbin, "/model.weights.bin")
 api.add_resource(Tranditionalcode, "/Tranditionalcode")
+api.add_resource(Manual, "/manual")
 api.add_resource(Detail, "/Detail")
 api.add_resource(QRcode, "/QRcode")
 api.add_resource(Prize, "/prizenum")

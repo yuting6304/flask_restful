@@ -13,6 +13,7 @@ def dbInit():
     
     cursor.execute("CREATE TABLE IF NOT EXISTS bar_code(id INT NOT NULL AUTO_INCREMENT, date CHAR(10) NOT NULL , period CHAR(10) NOT NULL ,prefix_barcode CHAR(2) NOT NULL, bar_code CHAR(20) NOT NULL, win CHAR(10) NOT NULL, money char(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARSET=utf8")
     cursor.execute("CREATE TABLE IF NOT EXISTS tranditional_code(id INT NOT NULL AUTO_INCREMENT, period CHAR(10) NOT NULL , bar_code CHAR(20) NOT NULL, win CHAR(10) NOT NULL, money char(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARSET=utf8")
+    cursor.execute("CREATE TABLE IF NOT EXISTS Mtranditional_code(id INT NOT NULL AUTO_INCREMENT, period CHAR(10) NOT NULL , bar_code CHAR(20) NOT NULL, win CHAR(10) NOT NULL, money char(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARSET=utf8")    
     cursor.execute("CREATE TABLE IF NOT EXISTS receipt_group(id INT NOT NULL AUTO_INCREMENT, group_name CHAR(30) NOT NULL, item CHAR(30) NOT NULL, price CHAR(30) NOT NULL, number CHAR(30) NOT NULL, PRIMARY KEY(id), barID CHAR(30) NOT NULL) DEFAULT CHARSET=utf8")
 
     db.close()
