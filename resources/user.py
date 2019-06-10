@@ -31,7 +31,7 @@ class Index (Resource):
 class Download (Resource):
     def get(self):
         path = "./upload/model.json"
-        return send_file(path, as_attachment=True)
+        return send_file(path, mimetype='application/json', as_attachment=True)
 
 
     def post(self):
@@ -46,7 +46,7 @@ class Download (Resource):
 class Modelbin (Resource):
     def get(self):
         path = "./upload/model.weights.bin"
-        return send_file(path, as_attachment=True)
+        return send_file(path, mimetype='application/octet-stream', as_attachment=True)
 
 
     def post(self):
