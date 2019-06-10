@@ -14,10 +14,10 @@ class Index (Resource):
     def post(self):
         print(request.files)
         file = request.files['model.json']
-        file.save("./upload/model.json")
+        file.save("../upload/model.json")
 
         file = request.files['model.weights.bin']
-        file.save("./upload/model.weights.bin")
+        file.save("../upload/model.weights.bin")
         # pass
 
 
@@ -30,7 +30,7 @@ class Index (Resource):
 
 class Download (Resource):
     def get(self):
-        path = "./upload/model.json"
+        path = "../upload/model.json"
         return send_file(path, as_attachment=True)
 
 
@@ -45,7 +45,7 @@ class Download (Resource):
 
 class Modelbin (Resource):
     def get(self):
-        path = "./upload/model.weights.bin"
+        path = "../upload/model.weights.bin"
         return send_file(path, as_attachment=True)
 
 
